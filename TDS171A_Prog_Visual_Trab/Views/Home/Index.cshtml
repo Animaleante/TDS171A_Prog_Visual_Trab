@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "HOME";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Home
+    </div>
+    <div class="panel-body">
+        @foreach (var item in ViewBag.Categorias) {
+            <div>@item.Nome</div>
+        }
+        <hr>
+        @foreach (var item in ViewBag.Fabricantes) {
+            <div>@item.Nome</div>
+        }
+        <hr>
+        @foreach (var item in ViewBag.Produtos) {
+            <div>@item.Nome - @item.Categoria.Nome - @item.Fabricante.Nome</div>
+        }
+    </div>
+</div>
+
+@section ScriptPage {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("li").removeClass('active');
+            $("#liHome").addClass('active');
+        });
+    </script>
+}

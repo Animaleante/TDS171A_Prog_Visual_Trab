@@ -1,0 +1,112 @@
+﻿@model TDS171A_Prog_Visual_Trab.Models.Venda
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Alterando os dados de uma VENDA";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Visualizando detalhes de uma Venda
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.NumeroNota)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NumeroNota)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Data)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Data)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NomeComprador)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NomeComprador)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CpfComprador)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CpfComprador)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TelefoneComprador)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TelefoneComprador)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Total)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Total)
+                </dd>
+            </dl>
+        </div>
+        
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Nome Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.VendaItems) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Produto.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantidade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Valor)
+                        </td>
+                        <td>
+                            @*@Html.ActionLink("Alterar", "Edit", new { id = item.ProdutoId }) |*@
+                            @Html.ActionLink("Eliminar", "Delete", "VendaItems", new { id = item.VendaItemId }, null)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.ActionLink("Adicionar", "Create", "VendaItems", new { id = Model.VendaId }, new { @class = "btn btn-info" })
+    </div>
+    <div class="panel-footer panel-info">
+        @Html.ActionLink("Alterar", "Edit", new { id = Model.VendaId }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Retornar para a listagem", "Index", null, new { @class = "btn btn-info" })
+    </div>
+</div>
+@section ScriptPage {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('li').removeClass("active");
+            $('#liVendas').addClass("active");
+
+            $('.table').dataTable({
+                "order": [[1, "asc"]]
+            });
+        });
+    </script>
+}

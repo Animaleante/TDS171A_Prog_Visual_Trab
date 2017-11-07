@@ -1,0 +1,93 @@
+﻿@model IEnumerable<TDS171A_Prog_Visual_Trab.Models.Venda>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Listagem de FABRICANTES";
+}
+
+@if (TempData["Message"] != null) {
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Relação de FABRICANTES registrados
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NumeroNota)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Data)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NomeComprador)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CpfComprador)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TelefoneComprador)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Total)
+                    </th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumeroNota)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Data)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomeComprador)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CpfComprador)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TelefoneComprador)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.VendaId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.VendaId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.VendaId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer panel-info">
+        @Html.ActionLink("Registrar uma nova VENDA", "Create", null, new { @class = "btn btn-success" })
+    </div>
+</div>
+@section styles{
+    <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet" />
+}
+@section ScriptPage {
+    <script src="@Url.Content("~/scripts/DataTables/jquery.dataTables.js")"></script>
+    <script src="@Url.Content("~/scripts/DataTables/dataTables.bootstrap.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".nav li").removeClass('active');
+            $(".nav #liVendas").addClass('active');
+
+            $('.table').dataTable({
+                "order":[[1, "asc"]]
+            });
+        });
+    </script>
+}
