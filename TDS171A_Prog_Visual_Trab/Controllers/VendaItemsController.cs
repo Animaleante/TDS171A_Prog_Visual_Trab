@@ -110,6 +110,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.VendaId = vendaItem.VendaId;
             return View(vendaItem);
         }
 
@@ -119,20 +120,43 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         public ActionResult Delete(long id)
         {
             VendaItem vendaItem = context.VendaItems.Find(id);
+            var iddavenda = vendaItem.VendaId;
+            var venda = context.Vendas.Find(vendaItem.VendaId);
+            venda.Total -= vendaItem.Quantidade * vendaItem.Valor;
             context.VendaItems.Remove(vendaItem);
             context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Vendas", new { id = iddavenda });
         }
 
-        [HttpPost, ActionName("Delete")]
+        // GET: VendaItems/DeleteEdit/5
+        public ActionResult DeleteEdit(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            VendaItem vendaItem = context.VendaItems.Find(id);
+            if (vendaItem == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.VendaId = vendaItem.VendaId;
+            return View(vendaItem);
+        }
+
+        // POST: VendaItems/DeleteEdit/5
+        [HttpPost, ActionName("DeleteEdit")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteProduto(long? id)
+        public ActionResult DeleteEdit(long id)
         {
             VendaItem vendaItem = context.VendaItems.Find(id);
+            var iddavenda = vendaItem.VendaId;
+            var venda = context.Vendas.Find(vendaItem.VendaId);
+            venda.Total -= vendaItem.Quantidade * vendaItem.Valor;
             context.VendaItems.Remove(vendaItem);
             context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit", "Vendas", new { id = iddavenda });
         }
-
+        
     }
 }

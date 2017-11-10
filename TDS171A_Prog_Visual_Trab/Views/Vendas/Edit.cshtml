@@ -21,16 +21,18 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NumeroNota, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NumeroNota, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NumeroNota, "", new { @class = "text-danger" })
+                <span class="form-control">
+                    @Html.DisplayFor(model => model.NumeroNota)
+                </span>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+                <span class="form-control">
+                    @Html.DisplayFor(model => model.Data)
+                </span>
             </div>
         </div>
 

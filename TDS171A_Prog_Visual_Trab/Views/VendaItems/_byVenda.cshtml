@@ -27,7 +27,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Produto.Nome)
+                @Html.DisplayFor(modelItem => item.Venda.NomeComprador)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Venda.NumeroNota)
@@ -38,10 +38,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Valor)
             </td>
-            <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.VendaItemId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.VendaItemId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.VendaItemId })
+            <td>                    
+                    @Html.ActionLink("Delete", "DeleteEdit", "VendaItems", new { id = item.VendaItemId }, null)
             </td>
         </tr>
     }

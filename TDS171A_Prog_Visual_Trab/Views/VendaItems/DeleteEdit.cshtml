@@ -42,8 +42,8 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-            <input type="submit" value="Remover Produto" class="btn btn-danger" />            
-            @Html.ActionLink("Voltar para lista", "Details", "Vendas", new { id = @ViewBag.VendaId }, null)            
+            <input type="submit" value="Remover Produto" class="btn btn-danger" />
+            @Html.ActionLink("Voltar para lista", "Edit", "Vendas", new { id = @ViewBag.VendaId }, null)
         }
     </div>
 </div>

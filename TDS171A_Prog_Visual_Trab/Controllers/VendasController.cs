@@ -39,6 +39,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         // GET: Vendas/Create
         public ActionResult Create()
         {
+            ViewBag.NumeroNota = context.Vendas.Count() + 1;
             return View();
         }
 
@@ -50,6 +51,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
             try {
                 venda.Data = DateTime.Now;
                 venda.Total = 0;
+                venda.NumeroNota = context.Vendas.Count() + 1;
                 context.Vendas.Add(venda);
                 context.SaveChanges();
                 return RedirectToAction("Edit", new { id = venda.VendaId });
