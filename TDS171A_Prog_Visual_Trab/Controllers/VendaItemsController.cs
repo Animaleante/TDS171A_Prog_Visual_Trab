@@ -41,6 +41,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         public ActionResult Create(long? id)
         {
             ViewBag.ProdutoId = new SelectList(context.Produtos, "ProdutoId", "Name");
+            
             ViewBag.VendaId = new SelectList(context.Vendas, "VendaId", "NumeroNota");
             return View();
         }
@@ -48,7 +49,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         // POST: Vendas/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VendaItemId,Quantidade,Valor,ProdutoId,VendaId")] VendaItem vendaItem)
+        public ActionResult Create([Bind(Include = "VendaItemId,Quantidade,Valor,ProdutoId,VendaId,Total")] VendaItem vendaItem)
         {
             if (ModelState.IsValid)
             {

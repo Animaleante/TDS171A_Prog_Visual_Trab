@@ -48,6 +48,8 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         public ActionResult Create(Venda venda)
         {
             try {
+                venda.Data = DateTime.Now;
+                venda.Total = 0;
                 context.Vendas.Add(venda);
                 context.SaveChanges();
                 return RedirectToAction("Edit", new { id = venda.VendaId });

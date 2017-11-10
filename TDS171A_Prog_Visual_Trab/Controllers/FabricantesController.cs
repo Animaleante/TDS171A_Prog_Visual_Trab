@@ -96,8 +96,17 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         public ActionResult Delete(long id)
         {
             Fabricante fabricante = context.Fabricantes.Find(id);
-            context.Fabricantes.Remove(fabricante);
-            context.SaveChanges();
+            try
+            {
+                context.Fabricantes.Remove(fabricante);
+                context.SaveChanges();
+            }
+            catch
+            {
+
+                TempData["Messageerro"] = "Fabricante " + fabricante.Nome.ToUpper() + " não pode ser removido!";
+                return RedirectToAction("Index");
+            }
 
             TempData["Message"] = "Fabricante " + fabricante.Nome.ToUpper() + " foi removido!";
 

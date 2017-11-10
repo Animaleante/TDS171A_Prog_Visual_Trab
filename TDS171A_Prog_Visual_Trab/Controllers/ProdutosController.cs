@@ -17,7 +17,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         // GET: Produtos
         public ActionResult Index()
         {
-            var produtos = context.Produtos.Include(c => c.Categoria).Include(f => f.Fabricante).OrderBy(n => n.Nome);
+            var produtos = context.Produtos.Where(p => p.Removido == false).Include(c => c.Categoria).Include(f => f.Fabricante).OrderBy(n => n.Nome);
             return View(produtos);
         }
 
@@ -122,21 +122,24 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            try
-            {
-                Produto produto = context.Produtos.Find(id);
-                produto.Removido = true;
-                context.Entry(produto).State = EntityState.Modified;
-                //context.Produtos.Remove(produto);
-                context.SaveChanges();
-                TempData["Message"] = "Produto " + produto.Nome.ToUpper() + " foi removido.";
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            Produto produto = context.Produtos.Find(id);
+            
+                if (produto.VendaItems.Where(p => p.ProdutoId == id).ToList().Count == 0)
+                {
+                    produto.Removido = true;
+                    context.Entry(produto).State = EntityState.Modified;
+                    //context.Produtos.Remove(produto);
+                    context.SaveChanges();
+                    TempData["Message"] = "Produto " + produto.VendaItems.Count + " foi removido.";
+                    return RedirectToAction("Index");
+                }
+                else
+                {   
+                    TempData["Messageerro"] = "Produto " + produto.Nome.ToUpper() + " não pode ser removido.";
+                    return RedirectToAction("Index");
+                }
+
         }
     }
 }

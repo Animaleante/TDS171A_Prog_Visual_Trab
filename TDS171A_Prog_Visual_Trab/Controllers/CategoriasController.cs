@@ -95,9 +95,16 @@ namespace TDS171A_Prog_Visual_Trab.Controllers {
         public ActionResult Delete(long id)
         {
             Categoria categoria = context.Categorias.Find(id);
-            context.Categorias.Remove(categoria);
-            context.SaveChanges();
-
+            try
+            {
+                context.Categorias.Remove(categoria);
+                context.SaveChanges();
+            }
+            catch
+            {
+                TempData["Messageerro"] = "Categoria " + categoria.Nome.ToUpper() + " não pode ser removida!";
+                return RedirectToAction("Index");
+            }
             TempData["Message"] = "Categoria " + categoria.Nome.ToUpper() + " foi removida!";
 
             return RedirectToAction("Index");

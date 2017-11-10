@@ -17,5 +17,6 @@ namespace TDS171A_Prog_Visual_Trab.Models
 
         public Categoria Categoria { get; set; }
         public Fabricante Fabricante { get; set; }
+        public virtual ICollection<VendaItem> VendaItems { get; set; }
     }
 }
