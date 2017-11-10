@@ -10,15 +10,15 @@
     <tr>
         <th>
             Nome
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Venda.NumeroNota)
-        </th>
+        </th>        
         <th>
             @Html.DisplayNameFor(model => model.Quantidade)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Valor)
+            Valor unitário
+        </th>
+        <th>
+            Valor Total
         </th>
         
     </tr>
@@ -34,6 +34,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Valor)
