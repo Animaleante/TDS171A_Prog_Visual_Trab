@@ -17,75 +17,112 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         // GET: VendaItems
         public ActionResult Index()
         {
-            return HttpNotFound();
-            //return View();
+            var vendaItems = context.VendaItems.Include(v => v.Produto).Include(v => v.Venda);
+            return View(context.VendaItems.OrderBy(v => v.VendaItemId));
+        }
+
+        // GET: VendaItems/Details/5
+        public ActionResult Details(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            VendaItem vendaItem = context.VendaItems.Find(id);
+            if (vendaItem == null)
+            {
+                return HttpNotFound();
+            }
+            //return View(vendaItem);
+            return View(context.VendaItems.OrderBy(v => v.VendaItemId));
         }
 
         // GET: Vendas/Create
         public ActionResult Create(long? id)
         {
-            if (id == null) {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Venda venda = context.Vendas.Where(p => p.VendaId == id).First();
-
-            if (venda == null) {
-                return HttpNotFound();
-            }
-
-            ViewBag.VendaId = id;
-            ViewBag.ProdutoId = new SelectList(context.Produtos.OrderBy(b => b.Nome), "ProdutoId", "Nome");
-
+            ViewBag.ProdutoId = new SelectList(context.Produtos, "ProdutoId", "Name");
+            ViewBag.VendaId = new SelectList(context.Vendas, "VendaId", "NumeroNota");
             return View();
         }
 
         // POST: Vendas/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(VendaItem vendaItem)
+        public ActionResult Create([Bind(Include = "VendaItemId,Quantidade,Valor,ProdutoId,VendaId")] VendaItem vendaItem)
         {
-            try {
+            if (ModelState.IsValid)
+            {
                 context.VendaItems.Add(vendaItem);
+                var venda = context.Vendas.Find(vendaItem.VendaId);
+                venda.Total += vendaItem.Quantidade * vendaItem.Valor;
+                context.Entry(venda).State = EntityState.Modified;
                 context.SaveChanges();
-                return RedirectToAction("Details", "Vendas", new { id = vendaItem.VendaId });
-            } catch {
-                return View(vendaItem);
+                return RedirectToAction("Edit", "Vendas", new { id = vendaItem.VendaId });
             }
+            return RedirectToAction("Edit", "Vendas", new { id = vendaItem.VendaId });            
         }
 
-        // GET: Produtos/Delete/5
-        public ActionResult Delete(long? id)
+       
+
+        // GET: VendaItems/Edit/5
+        public ActionResult Edit(long? id)
         {
-            if (id == null) {
+            if (id == null)
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            VendaItem vendaItem = context.VendaItems.Where(p => p.VendaItemId == id).Include(p => p.Produto).First();
-
-            if (vendaItem == null) {
+            VendaItem vendaItem = context.VendaItems.Find(id);
+            if (vendaItem == null)
+            {
                 return HttpNotFound();
             }
-
+            ViewBag.ProdutoId = new SelectList(context.Produtos, "ProdutoId", "Name", vendaItem.ProdutoId);
+            ViewBag.VendaId = new SelectList(context.Vendas, "VendaId", "NumeroNota", vendaItem.VendaId);
             return View(vendaItem);
         }
 
-        // POST: Produtos/Delete/5
+        // POST: VendaItems/Edit/5        
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "VendaItemId,Quantidade,Valor,ProdutoId,VendaId")] VendaItem vendaItem)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Entry(vendaItem).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ProdutoId = new SelectList(context.Produtos, "ProdutoId", "Name", vendaItem.ProdutoId);
+            ViewBag.VendaId = new SelectList(context.Vendas, "VendaId", "NumeroNota", vendaItem.VendaId);
+            return View(vendaItem);
+        }
+
+        // GET: VendaItems/Delete/5
+        public ActionResult Delete(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            VendaItem vendaItem = context.VendaItems.Find(id);
+            if (vendaItem == null)
+            {
+                return HttpNotFound();
+            }
+            return View(vendaItem);
+        }
+
+        // POST: VendaItems/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            try {
-                VendaItem vendaItem = context.VendaItems.Find(id);
-                context.Entry(vendaItem).State = EntityState.Modified;
-                context.VendaItems.Remove(vendaItem);
-                context.SaveChanges();
-                //TempData["Message"] = "Produto " + vendaItem.Nome.ToUpper() + " foi removido.";
+            VendaItem vendaItem = context.VendaItems.Find(id);
+            context.VendaItems.Remove(vendaItem);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }            
+    
 
-                return RedirectToAction("Details", "Vendas", new { id = vendaItem.VendaId });
-            } catch {
-                return View();
-            }
-        }
     }
 }

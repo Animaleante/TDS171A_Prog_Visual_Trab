@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TDS171A_Prog_Visual_Trab.Models.VendaItem>
+
+@{
+    ViewBag.Title = "_byVenda";
+}
+
+<h2>ByVendas</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Venda.NumeroNota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produto.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venda.NumeroNota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.VendaItemId }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.VendaItemId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.VendaItemId })
+                </td>*@
+        </tr>
+    }
+
+</table>

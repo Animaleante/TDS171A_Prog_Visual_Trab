@@ -407,6 +407,9 @@
     <Content Include="Views\Vendas\Create.cshtml" />
     <Content Include="Views\VendaItems\Create.cshtml" />
     <Content Include="Views\VendaItems\Delete.cshtml" />
+    <Content Include="Views\Vendas\Edit.cshtml" />
+    <Content Include="Views\VendaItems\_Create.cshtml" />
+    <Content Include="Views\VendaItems\_byVenda.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

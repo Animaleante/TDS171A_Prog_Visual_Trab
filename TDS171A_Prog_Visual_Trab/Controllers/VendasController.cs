@@ -33,7 +33,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
                 return HttpNotFound();
             }
 
-            return View(venda);
+            return View(venda);            
         }
 
         // GET: Vendas/Create
@@ -50,10 +50,70 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
             try {
                 context.Vendas.Add(venda);
                 context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", new { id = venda.VendaId });
             } catch {
                 return View(venda);
             }
+        }
+
+        // GET: Vendas/Edit/5        
+        public ActionResult Edit(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Venda venda = context.Vendas
+                .Include(v => v.VendaItems)
+                .FirstOrDefault(v => v.VendaId == id.Value);
+
+            if (venda == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.ProdutoId = new SelectList(context.Produtos, "ProdutoId", "Nome");
+            ViewBag.VendaId = new SelectList(context.Vendas, "VendaId", "NumeroNota");
+            return View(venda);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "VendaId,NumeroNota,Data,NomeComprador,CpfComprador,TelefoneComprador,Total")] Venda venda)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Entry(venda).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(venda);
+        }
+
+        // GET: Vendas/Delete/5
+        public ActionResult Delete(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Venda venda = context.Vendas.Find(id);
+            if (venda == null)
+            {
+                return HttpNotFound();
+            }
+            return View(venda);
+        }
+
+        // POST: Vendas/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(long id)
+        {
+            Venda venda = context.Vendas.Find(id);
+            context.Vendas.Remove(venda);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
