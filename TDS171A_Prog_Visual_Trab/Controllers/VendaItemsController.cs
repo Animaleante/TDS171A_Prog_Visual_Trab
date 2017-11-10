@@ -122,8 +122,17 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
             context.VendaItems.Remove(vendaItem);
             context.SaveChanges();
             return RedirectToAction("Index");
-        }            
-    
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteProduto(long? id)
+        {
+            VendaItem vendaItem = context.VendaItems.Find(id);
+            context.VendaItems.Remove(vendaItem);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
     }
 }

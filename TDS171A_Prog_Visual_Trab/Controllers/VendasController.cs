@@ -110,7 +110,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         // POST: Vendas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult Delete(long id)
         {
             Venda venda = context.Vendas.Find(id);
             context.Vendas.Remove(venda);

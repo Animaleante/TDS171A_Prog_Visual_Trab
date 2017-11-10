@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<TDS171A_Prog_Visual_Trab.Models.VendaItem>
 
 @{
-    ViewBag.Title = "_byVenda";
+    ViewBag.Title = "Lista de Produtos";
 }
 
-<h2>ByVendas</h2>
+<h2>Lista de Produtos</h2>
 
 <table class="table">
     <tr>
@@ -20,7 +20,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Valor)
         </th>
-        @*<th></th>*@
+        
     </tr>
 
     @foreach (var item in Model)
@@ -38,11 +38,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Valor)
             </td>
-            @*<td>
+            <td>
                     @Html.ActionLink("Edit", "Edit", new { id=item.VendaItemId }) |
                     @Html.ActionLink("Details", "Details", new { id=item.VendaItemId }) |
                     @Html.ActionLink("Delete", "Delete", new { id=item.VendaItemId })
-                </td>*@
+            </td>
         </tr>
     }
 
