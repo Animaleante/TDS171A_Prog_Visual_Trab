@@ -12,6 +12,7 @@ namespace TDS171A_Prog_Visual_Trab.Models
         public long ProdutoId { get; set; }
         public int Quantidade { get; set; }
         public Decimal Valor { get; set; }
+        public Decimal totalUnitario { get; set; }
 
         public Venda Venda { get; set; }
         public Produto Produto { get; set; }

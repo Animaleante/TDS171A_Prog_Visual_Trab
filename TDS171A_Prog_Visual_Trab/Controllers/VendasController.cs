@@ -115,9 +115,16 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         public ActionResult Delete(long id)
         {
             Venda venda = context.Vendas.Find(id);
+            try {             
             context.Vendas.Remove(venda);
             context.SaveChanges();
             return RedirectToAction("Index");
+            }
+            catch
+            {
+                TempData["Messageerro"] = "Nota " + venda.NumeroNota + " não pode ser removido.";
+                return RedirectToAction("Index");
+            }
         }
     }
 }

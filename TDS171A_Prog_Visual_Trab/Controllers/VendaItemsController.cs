@@ -13,7 +13,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
     public class VendaItemsController : Controller
     {
         private EFContext context = new EFContext();
-
+        
         // GET: VendaItems
         public ActionResult Index()
         {
@@ -56,6 +56,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
                 context.VendaItems.Add(vendaItem);
                 var venda = context.Vendas.Find(vendaItem.VendaId);
                 venda.Total += vendaItem.Quantidade * vendaItem.Valor;
+                vendaItem.totalUnitario += vendaItem.Quantidade * vendaItem.Valor;
                 context.Entry(venda).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Edit", "Vendas", new { id = vendaItem.VendaId });

@@ -16,33 +16,37 @@
         
         
         <div class="form-group">
-            @Html.LabelFor(model => model.NomeComprador, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <span class="control-label col-md-3">
+                @Html.Label("Nome do comprador")
+            </span>
+            <div class="col-md-9">
                 @Html.EditorFor(model => model.NomeComprador, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NomeComprador, "", new { @class = "text-danger" })
             </div>
         </div>
-        viewbag
-        @ViewBag.NumeroNota
-
+        
         <div class="form-group">
-            @Html.LabelFor(model => model.CpfComprador, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <span class="control-label col-md-3">
+                @Html.Label("CPF do comprador")
+            </span>
+            <div class="col-md-9">
                 @Html.EditorFor(model => model.CpfComprador, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CpfComprador, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TelefoneComprador, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <span class="control-label col-md-3">
+                @Html.Label("Telefone")
+            </span>
+            <div class="col-md-9">
                 @Html.EditorFor(model => model.TelefoneComprador, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TelefoneComprador, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="panel-footer panel-info">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-9">
                 <input type="submit" value="Adicionar Venda" class="btn btn-danger" />
                 @Html.ActionLink("Retornar para a listagem de Vendas", "Index", null, new { @class = "btn btn-warning" })
             </div>

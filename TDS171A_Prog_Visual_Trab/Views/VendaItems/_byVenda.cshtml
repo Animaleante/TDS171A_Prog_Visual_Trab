@@ -8,39 +8,46 @@
 
 <table class="table">
     <tr>
+        @*<th>
+            Nome do Comprador
+        </th>
         <th>
-            Nome
-        </th>        
+            @Html.DisplayNameFor(model => model.Venda.NumeroNota)
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Quantidade)
         </th>
         <th>
-            Valor unitário
+            @Html.DisplayNameFor(model => model.Valor)
         </th>
         <th>
-            Valor Total
+            Total
         </th>
         
     </tr>
 
     @foreach (var item in Model)
     {
+               
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Venda.NomeComprador)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Venda.NumeroNota)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Quantidade)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Valor)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Valor)
+                @Html.DisplayFor(modelItem => item.totalUnitario)
             </td>
+
+
             <td>                    
                     @Html.ActionLink("Delete", "DeleteEdit", "VendaItems", new { id = item.VendaItemId }, null)
             </td>
