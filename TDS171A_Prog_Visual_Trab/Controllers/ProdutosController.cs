@@ -142,7 +142,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
                 context.Entry(produto).State = EntityState.Modified;
                 //context.Produtos.Remove(produto);
                 context.SaveChanges();
-                TempData["Message"] = "Produto " + produto.VendaItems.Count + " foi removido.";
+                TempData["Message"] = "Produto " + produto.Nome.ToUpper() + " foi removido.";
                 return RedirectToAction("Index");
             }
             else
