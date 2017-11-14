@@ -1,30 +1,24 @@
 ﻿@model TDS171A_Prog_Visual_Trab.Models.Categoria
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Visualizando detalhes de uma CATEGORIA";
 }
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        Dados da categoria a ser removida
+
+<h1 class="my-4">Dados da CATEGORIA a ser removida</h1>
+
+<div class="row">
+    <div class="col-lg-12 mb-12">
+        Deseja mesmo remover a categoria @Html.DisplayFor(model => model.Nome)?
+        <p class="help-block"></p>
     </div>
-    <div class="panel-body">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome)<br />
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="glyphicon glyphicon-user">
-                    </i>
-                </span>
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-            </div>
-        </div>
-    </div>
-    <div class="panel-footer panel-info">
+</div>
+
+<div class="row mb-4">
+    <div class="col-lg-12 mb-12">
         @using (Html.BeginForm()) {
             @Html.AntiForgeryToken()
-            <input type="submit" value="Remover CATEGORIA" class="btn btn-danger" />
-            @Html.ActionLink("Retornar para a listagem", "Index", null, new { @class = "btn btn-info" })
+            <input type="submit" value="Remover CATEGORIA" class="btn btn-primary" />
+            @Html.ActionLink("Retornar para a listagem", "Index")
         }
     </div>
 </div>
