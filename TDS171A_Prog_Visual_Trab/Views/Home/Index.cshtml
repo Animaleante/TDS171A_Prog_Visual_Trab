@@ -1,62 +1,64 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "HOME";
 }
 
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        Home
+<h1 class="my-4">Home</h1>
+
+<h2>Categorias</h2>
+<div class="row">
+    <div class="col-lg-12 mb-12">
+        <div class="card h-100">
+            @*<h4 class="card-header">Categorias</h4>*@
+            <div class="card-body">
+                <div class="col-md-10">
+                    @foreach (var item in ViewBag.Categorias) {
+                        <div>@item.Nome</div>
+                    }
+                </div>
+            </div>
+            @*<div class="card-footer">
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>*@
+        </div>
     </div>
-    <div class="panel-body">
-          @*@foreach (var item in ViewBag.Categorias)
-            {
-                <div>@item.Nome</div>
-            }
-        <hr>
-            @foreach (var item in ViewBag.Fabricantes)
-            {
-                <div>@item.Nome</div>
-            }
-        <hr>
-            @foreach (var item in ViewBag.Produtos)
-            {
-                <div>@item.Nome - @item.Categoria.Nome - @item.Fabricante.Nome</div>
-            }
+</div>
 
-        <hr />*@
-        
-        <div class="panel-body">
-            <label class="control-label col-md-2">Categorias</label>
-            <div class="col-md-10">
-                @foreach (var item in ViewBag.Categorias)
-                {
-                    <div>@item.Nome</div>
-                }
+<h2>Fabricantes</h2>
+<div class="row">
+    <div class="col-lg-12 mb-12">
+        <div class="card h-100">
+            @*<h4 class="card-header">Fabricantes</h4>*@
+            <div class="card-body">
+                <div class="col-md-10">
+                    @foreach (var item in ViewBag.Fabricantes) {
+                        <div>@item.Nome</div>
+                    }
+                </div>
             </div>
+            @*<div class="card-footer">
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>*@
         </div>
-        <hr />
-        <div class="panel-body">
-            <label class="control-label col-md-2">Fabricantes</label>
-            <div class="col-md-10">
-                @foreach (var item in ViewBag.Fabricantes)
-                {
-                    <div>@item.Nome</div>
-                }
-            </div>
-        </div>
-        <hr />
-        <div class="panel-body">
-            <label class="control-label col-md-2">Produtos</label>
-            <div class="col-md-10">
-                @foreach (var item in ViewBag.Produtos)
-                {
-                    <div>@item.Nome - @item.Categoria.Nome - @item.Fabricante.Nome</div>
-                }
-            </div>
-        </div>
+    </div>
+</div>
 
-
+<h2>Produtos</h2>
+<div class="row mb-4">
+    <div class="col-lg-12 mb-12">
+        <div class="card h-100">
+            @*<h4 class="card-header">Produtos</h4>*@
+            <div class="card-body">
+                <div class="col-md-10">
+                    @foreach (var item in ViewBag.Produtos) {
+                        <div>@item.Nome - @item.Categoria.Nome - @item.Fabricante.Nome</div>
+                    }
+                </div>
+            </div>
+            @*<div class="card-footer">
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>*@
+        </div>
     </div>
 </div>
 

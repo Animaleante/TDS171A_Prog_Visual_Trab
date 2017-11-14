@@ -3,56 +3,54 @@
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1.0" charset="utf-8" />
         <title>@ViewBag.Title</title>
-        <link href="@Url.Content("~/content/bootstrap.css")" rel="stylesheet" />
+        <link href="@Url.Content("~/content/bootstrap.min.css")" rel="stylesheet" />
+        <link href="@Url.Content("~/content/modern-business.css")" rel="stylesheet" />
+
         @RenderSection("styles", false);
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="page-header">
-                    <h1>
-                        Sistema de venda online
-                        <small class="text-danger">
-                            ver. 1.0
-                        </small>
-                    </h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-3 col-md-3 bg-success">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li id="liHome" role="presentation" class="active">
-                            @Html.ActionLink("Home", "Index", "Home")
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Sistema de venda online</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li id="liHome" class="nav-item">
+                            @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
                         </li>
-                        <li id="liCategorias" role="presentation">
-                            @Html.ActionLink("Categorias", "Index", "Categorias")
+                        <li id="liCategorias" class="nav-item">
+                            @Html.ActionLink("Categorias", "Index", "Categorias", null, new { @class = "nav-link" })
                         </li>
-                        <li id="liFabricantes" role="presentation">
-                            @Html.ActionLink("Fabricantes", "Index", "Fabricantes")
+                        <li id="liFabricantes" class="nav-item">
+                            @Html.ActionLink("Fabricantes", "Index", "Fabricantes", null, new { @class = "nav-link" })
                         </li>
-                        <li id="liProdutos" role="presentation">
-                            @Html.ActionLink("Produtos", "Index", "Produtos")
+                        <li id="liProdutos" class="nav-item">
+                            @Html.ActionLink("Produtos", "Index", "Produtos", null, new { @class = "nav-link" })
                         </li>
-                        <li id="liVendas" role="presentation">
-                            @Html.ActionLink("Vendas", "Index", "Vendas")
+                        <li id="liVendas" class="nav-item">
+                            @Html.ActionLink("Vendas", "Index", "Vendas", null, new { @class = "nav-link" })
                         </li>
                     </ul>
                 </div>
-                <div class="col-xs-9 col-md-9">
-                    <br />
-                    @RenderBody()
-                </div>
             </div>
-            <br />
-            <div class="row">
-                <div class="col-xs-12 col-md-12">
-                    3.2 LAYOUTS 61
-                    <small>Layout com Bootstrap</small>
-                </div>
+        </nav>
+
+        <div class="container">
+            @RenderBody()
+        </div>        
+        
+        <!-- Footer -->
+        <footer class="py-5 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Sistema de venda online 2017</p>
             </div>
-        </div>
-        <script src="@Url.Content("~/scripts/jquery-3.2.1.js")"></script>
-        <script src="@Url.Content("~/scripts/bootstrap.js")"></script>
+        </footer>
+
+        <script src="@Url.Content("~/scripts/jquery.min.js")"></script>
+        <script src="@Url.Content("~/scripts/bootstrap.bundle.min.js")"></script>
+
         @RenderSection("ScriptPage", false);
     </body>
 </html>
