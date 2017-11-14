@@ -14,6 +14,9 @@
             <div class="control-group form-group">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.VendaId)
+                @Html.HiddenFor(model => model.Data)
+                @Html.HiddenFor(model => model.NumeroNota)
+                @Html.HiddenFor(model => model.Total)
 
                 <div class="controls">
                     @Html.DisplayNameFor(model => model.NumeroNota)

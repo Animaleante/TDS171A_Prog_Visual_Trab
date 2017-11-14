@@ -87,6 +87,8 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         {
             if (ModelState.IsValid)
             {
+                Console.WriteLine("TEste");
+                Console.WriteLine(venda.Data);
                 context.Entry(venda).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");

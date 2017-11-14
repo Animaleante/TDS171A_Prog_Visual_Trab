@@ -12,18 +12,19 @@ namespace TDS171A_Prog_Visual_Trab.Models
         public long NumeroNota { get; set; }
         public DateTime Data { get; set; }
 
-        [Required(ErrorMessage ="Nomer é obrigatório",AllowEmptyStrings =false)]
-        [Display(Name = "Informe o nome do comprador")]
-        [StringLength(80, MinimumLength = 3)]
+        [Required(ErrorMessage ="Nomer é obrigatório",AllowEmptyStrings =false)]        
+        [StringLength(80, ErrorMessage = "O nome do produto precisa ter no mínimo 3 caracteres", MinimumLength = 3)]
         public string NomeComprador { get; set; }
 
         [Required(ErrorMessage ="CPF obrigatório",AllowEmptyStrings =false)]
-        public long CpfComprador { get; set; }
+        [StringLength(11, ErrorMessage = "O CPF precisa ter 11 números",MinimumLength = 11)]
+        public string CpfComprador { get; set; }
 
         [Required(ErrorMessage ="Obrigatório o telefone", AllowEmptyStrings = false)]
-        public long TelefoneComprador { get; set; }
+        [StringLength(13, ErrorMessage = "O telefone precisa ter pelo menos 11 digitos (somente números)", MinimumLength = 10)]
+        public string TelefoneComprador { get; set; }
 
-        public Decimal? Total { get; set; }
+        public double? Total { get; set; }
 
         public virtual ICollection<VendaItem> VendaItems { get; set; }
     }

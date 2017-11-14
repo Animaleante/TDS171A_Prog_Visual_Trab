@@ -17,21 +17,21 @@
                 <div class="controls">
                     @Html.Label("Nome do comprador")
                     @Html.EditorFor(model => model.NomeComprador, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NomeComprador, "Nome do comprador não pode ser vazio!", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.NomeComprador, "", new { @class = "text-danger" })
                     <p class="help-block"></p>
                 </div>
 
                 <div class="controls">
                     @Html.Label("CPF do comprador")
                     @Html.EditorFor(model => model.CpfComprador, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CpfComprador, "CPF do comprador não pode ser vazio!", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.CpfComprador, "", new { @class = "text-danger" })
                     <p class="help-block"></p>
                 </div>
 
                 <div class="controls">
                     @Html.Label("Telefone")
                     @Html.EditorFor(model => model.TelefoneComprador, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TelefoneComprador, "Telefone do comprador não pode ser vazio!", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.TelefoneComprador, "", new { @class = "text-danger" })
                     <p class="help-block"></p>
                 </div>
             </div>

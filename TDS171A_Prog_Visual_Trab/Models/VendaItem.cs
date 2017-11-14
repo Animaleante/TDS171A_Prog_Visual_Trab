@@ -15,11 +15,11 @@ namespace TDS171A_Prog_Visual_Trab.Models
         [Required(ErrorMessage ="Quantidade deve ser maior que 0",AllowEmptyStrings =false)]
         public int Quantidade { get; set; }
 
-        [Required(ErrorMessage ="Valor deve ser maior que 0")]
-        public Decimal Valor { get; set; }
+        
+        public double? Valor { get; set; }       
 
 
-        public Decimal totalUnitario { get; set; }
+        public double? totalUnitario { get; set; }
 
         public Venda Venda { get; set; }
         public Produto Produto { get; set; }
