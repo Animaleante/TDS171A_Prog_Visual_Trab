@@ -104,7 +104,7 @@
 }
 
 @Html.Partial("~/Views/VendaItems/_Create.cshtml", new TDS171A_Prog_Visual_Trab.Models.VendaItem() { VendaId = Model.VendaId })
-@Html.Partial("~/Views/VendaItems/_byVenda.cshtml", Model.VendaItems)
+@Html.Partial("~/Views/VendaItems/_porVenda.cshtml", Model.VendaItems)
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

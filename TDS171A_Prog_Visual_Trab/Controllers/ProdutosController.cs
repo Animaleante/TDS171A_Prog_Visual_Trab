@@ -14,6 +14,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
     {
         private EFContext context = new EFContext();
 
+        
         // GET: Produtos
         public ActionResult Index()
         {
@@ -24,13 +25,15 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         // GET: Produtos/Details/5
         public ActionResult Details(long? id)
         {
-            if(id == null) {
+            if (id == null)
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             Produto produto = context.Produtos.Where(p => p.ProdutoId == id).Include(c => c.Categoria).Include(f => f.Fabricante).First();
 
-            if(produto == null) {
+            if (produto == null)
+            {
                 return HttpNotFound();
             }
 
@@ -42,7 +45,6 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         {
             ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome), "CategoriaId", "Nome");
             ViewBag.FabricanteId = new SelectList(context.Fabricantes.OrderBy(b => b.Nome), "FabricanteId", "Nome");
-
             return View();
         }
 
@@ -51,6 +53,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Produto produto)
         {
+
             try
             {
                 context.Produtos.Add(produto);
@@ -66,12 +69,14 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         // GET: Produtos/Edit/5
         public ActionResult Edit(long? id)
         {
-            if(id == null) {
+            if (id == null)
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             Produto produto = context.Produtos.Find(id);
-            if(produto == null) {
+            if (produto == null)
+            {
                 return HttpNotFound();
             }
 
@@ -88,7 +93,8 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         {
             try
             {
-                if (ModelState.IsValid) {
+                if (ModelState.IsValid)
+                {
                     context.Entry(produto).State = EntityState.Modified;
                     context.SaveChanges();
                     return RedirectToAction("Index");
@@ -104,13 +110,15 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         // GET: Produtos/Delete/5
         public ActionResult Delete(long? id)
         {
-            if(id == null) {
+            if (id == null)
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             Produto produto = context.Produtos.Where(p => p.ProdutoId == id).Include(c => c.Categoria).Include(f => f.Fabricante).First();
 
-            if (produto == null) {
+            if (produto == null)
+            {
                 return HttpNotFound();
             }
 
@@ -124,21 +132,21 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         {
 
             Produto produto = context.Produtos.Find(id);
-            
-                if (produto.VendaItems.Where(p => p.ProdutoId == id).ToList().Count == 0)
-                {
-                    produto.Removido = true;
-                    context.Entry(produto).State = EntityState.Modified;
-                    //context.Produtos.Remove(produto);
-                    context.SaveChanges();
-                    TempData["Message"] = "Produto " + produto.VendaItems.Count + " foi removido.";
-                    return RedirectToAction("Index");
-                }
-                else
-                {   
-                    TempData["Messageerro"] = "Produto " + produto.Nome.ToUpper() + " não pode ser removido.";
-                    return RedirectToAction("Index");
-                }
+
+            if (produto.VendaItems.Where(p => p.ProdutoId == id).ToList().Count == 0)
+            {
+                produto.Removido = true;
+                context.Entry(produto).State = EntityState.Modified;
+                //context.Produtos.Remove(produto);
+                context.SaveChanges();
+                TempData["Message"] = "Produto " + produto.VendaItems.Count + " foi removido.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["Messageerro"] = "Produto " + produto.Nome.ToUpper() + " não pode ser removido.";
+                return RedirectToAction("Index");
+            }
 
         }
     }

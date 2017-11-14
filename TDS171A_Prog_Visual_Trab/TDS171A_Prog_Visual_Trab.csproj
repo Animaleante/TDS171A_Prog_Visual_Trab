@@ -401,7 +401,6 @@
     <Content Include="Views\Produtos\Index.cshtml" />
     <Content Include="Views\Produtos\_PorCategoria.cshtml" />
     <Content Include="Views\Produtos\_PorFabricante.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Vendas\Index.cshtml" />
     <Content Include="Views\Vendas\Details.cshtml" />
     <Content Include="Views\Vendas\Create.cshtml" />
@@ -409,10 +408,11 @@
     <Content Include="Views\VendaItems\Delete.cshtml" />
     <Content Include="Views\Vendas\Edit.cshtml" />
     <Content Include="Views\VendaItems\_Create.cshtml" />
-    <Content Include="Views\VendaItems\_byVenda.cshtml" />
+    <Content Include="Views\VendaItems\_porVenda.cshtml" />
     <Content Include="Views\Vendas\Delete.cshtml" />
     <Content Include="Views\VendaItems\Edit.cshtml" />
     <Content Include="Views\VendaItems\DeleteEdit.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

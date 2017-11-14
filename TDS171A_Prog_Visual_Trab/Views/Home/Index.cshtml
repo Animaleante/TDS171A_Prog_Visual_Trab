@@ -9,17 +9,54 @@
         Home
     </div>
     <div class="panel-body">
-        @foreach (var item in ViewBag.Categorias) {
-            <div>@item.Nome</div>
-        }
+          @*@foreach (var item in ViewBag.Categorias)
+            {
+                <div>@item.Nome</div>
+            }
         <hr>
-        @foreach (var item in ViewBag.Fabricantes) {
-            <div>@item.Nome</div>
-        }
+            @foreach (var item in ViewBag.Fabricantes)
+            {
+                <div>@item.Nome</div>
+            }
         <hr>
-        @foreach (var item in ViewBag.Produtos) {
-            <div>@item.Nome - @item.Categoria.Nome - @item.Fabricante.Nome</div>
-        }
+            @foreach (var item in ViewBag.Produtos)
+            {
+                <div>@item.Nome - @item.Categoria.Nome - @item.Fabricante.Nome</div>
+            }
+
+        <hr />*@
+        
+        <div class="panel-body">
+            <label class="control-label col-md-2">Categorias</label>
+            <div class="col-md-10">
+                @foreach (var item in ViewBag.Categorias)
+                {
+                    <div>@item.Nome</div>
+                }
+            </div>
+        </div>
+        <hr />
+        <div class="panel-body">
+            <label class="control-label col-md-2">Fabricantes</label>
+            <div class="col-md-10">
+                @foreach (var item in ViewBag.Fabricantes)
+                {
+                    <div>@item.Nome</div>
+                }
+            </div>
+        </div>
+        <hr />
+        <div class="panel-body">
+            <label class="control-label col-md-2">Produtos</label>
+            <div class="col-md-10">
+                @foreach (var item in ViewBag.Produtos)
+                {
+                    <div>@item.Nome - @item.Categoria.Nome - @item.Fabricante.Nome</div>
+                }
+            </div>
+        </div>
+
+
     </div>
 </div>
 

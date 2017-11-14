@@ -118,11 +118,12 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
             try {             
             context.Vendas.Remove(venda);
             context.SaveChanges();
+            TempData["Message"] = "Nota " + venda.NumeroNota + " removido com sucesso.";
             return RedirectToAction("Index");
             }
             catch
             {
-                TempData["Messageerro"] = "Nota " + venda.NumeroNota + " não pode ser removido.";
+                TempData["Messageerro"] = "Nota " + venda.NumeroNota + " não pode ser removido pois possui produtos.";
                 return RedirectToAction("Index");
             }
         }
