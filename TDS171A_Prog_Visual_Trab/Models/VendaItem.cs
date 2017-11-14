@@ -10,7 +10,7 @@ namespace TDS171A_Prog_Visual_Trab.Models
     {
         public long? VendaItemId { get; set; }
         public long? VendaId { get; set; }
-        public long ProdutoId { get; set; }
+        public long? ProdutoId { get; set; }
 
         [Required(ErrorMessage ="Quantidade deve ser maior que 0",AllowEmptyStrings =false)]
         public int Quantidade { get; set; }

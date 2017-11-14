@@ -8,18 +8,18 @@
 
 <table class="table">
     <tr>
-        @*<th>
-            Nome do Comprador
-        </th>
         <th>
-            @Html.DisplayNameFor(model => model.Venda.NumeroNota)
-        </th>*@
+            @Html.DisplayNameFor(model => model.Produto.Nome)
+        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Quantidade)
         </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Valor)
         </th>
+
         <th>
             Total
         </th>
@@ -30,15 +30,14 @@
     {
                
         <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Venda.NomeComprador)
-            </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Venda.NumeroNota)
-            </td>*@
+                @Html.DisplayFor(modelItem => item.Produto.Nome)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Quantidade)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Valor)
             </td>

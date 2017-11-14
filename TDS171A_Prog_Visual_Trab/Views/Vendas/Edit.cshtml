@@ -5,109 +5,77 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h1 class="my-4">Alteração dos dados de uma VENDA</h1>
 
-
-@using (Html.BeginForm())
-{
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Venda</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.VendaId)
+    <div class="row">
+        <div class="col-lg-12 mb-12">
+            <div class="control-group form-group">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.VendaId)
 
-        <div class="form-group">
-            <span class="control-label col-md-3">
-                @Html.Label("Número da Nota")
-            </span>
-            <div class="col-md-9">
-                <span class="form-control">
-                    @Html.DisplayFor(model => model.NumeroNota)
-                </span>
+                <div class="controls">
+                    @Html.DisplayNameFor(model => model.NumeroNota)
+                    <br />
+                    <div>
+                        @Html.DisplayFor(model => model.NumeroNota)
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="controls">
+                    @Html.LabelFor(model => model.Data)
+                    <br />
+                    <div>
+                        @Html.DisplayFor(model => model.Data)
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="controls">
+                    @Html.LabelFor(model => model.NomeComprador,"Nome do Comprador")
+                    @Html.EditorFor(model => model.NomeComprador, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NomeComprador, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="controls">
+                    @Html.LabelFor(model => model.CpfComprador, "CPF do Comprador")
+                    @Html.EditorFor(model => model.CpfComprador, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CpfComprador, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="controls">
+                    @Html.LabelFor(model => model.TelefoneComprador, "Telefone do comprador")
+                    @Html.EditorFor(model => model.TelefoneComprador, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TelefoneComprador, "", new { @class = "text-danger" })
+                </div>
+
+                <hr />
+
+                <div class="controls">
+                    @Html.LabelFor(model => model.Total)
+                    <br />
+                    <div>
+                        @Html.DisplayFor(model => model.Total)
+                    </div>
+                </div>
             </div>
         </div>
-
-        @*
-                
-            <span class="control-label col-md-3">
-                    @Html.Label("Nome da label")            
-            </span>
-
-
-        *@
-        
-        <div class="form-group">
-            @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-3" })
-            <div class="col-md-9">
-                <span class="form-control">
-                    @Html.DisplayFor(model => model.Data)
-                </span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <span class="control-label col-md-3">
-                @Html.Label("Nome do Comprador")
-            </span>
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.NomeComprador, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NomeComprador, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <span class="control-label col-md-3">
-                @Html.Label("CPF do Comprador")
-            </span>
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.CpfComprador, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CpfComprador, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <span class="control-label col-md-3">
-                @Html.Label("Telefone do comprador")
-            </span>
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.TelefoneComprador, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TelefoneComprador, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <span class="control-label col-md-3">
-                @Html.Label("Total da compra")
-            </span>
-            <div class="col-md-9">
-                <span class="form-control">
-                    @Html.DisplayFor(model => model.Total)
-                </span>
-            </div>
-        </div>
-        
-
-        <div class="panel-footer panel-info">
-            <div class="col-md-offset-2 col-md-9">
-                <input type="submit" value="Gravar alterações" class="btn btn-info" />
-                @Html.ActionLink("Retornar para a listagem de Vendas", "Index", null, new { @class = "btn btn-warning" })
-            </div>
-            <br />
-            <br />
-        </div>
-
     </div>
 
-
+    <div class="row mb-4">
+        <div class="col-lg-12 mb-12">
+            <input type="submit" value="Gravar alterações" class="btn btn-primary" />
+            @Html.ActionLink("Retornar para a listagem de Categorias", "Index", null, new { @class = "btn" })
+        </div>
+    </div>
 }
 
 @Html.Partial("~/Views/VendaItems/_Create.cshtml", new TDS171A_Prog_Visual_Trab.Models.VendaItem() { VendaId = Model.VendaId })
 @Html.Partial("~/Views/VendaItems/_porVenda.cshtml", Model.VendaItems)
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

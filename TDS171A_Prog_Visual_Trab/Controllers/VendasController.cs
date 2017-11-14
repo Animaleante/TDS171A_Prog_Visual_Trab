@@ -101,7 +101,8 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Venda venda = context.Vendas.Find(id);
+            // Venda venda = context.Vendas.Find(id);
+            Venda venda = context.Vendas.Where(p => p.VendaId == id).Include(c => c.VendaItems.Select(vi => vi.Produto)).First();
             if (venda == null)
             {
                 return HttpNotFound();

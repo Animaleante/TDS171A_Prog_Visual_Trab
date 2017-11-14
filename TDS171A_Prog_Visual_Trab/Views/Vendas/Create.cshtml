@@ -5,61 +5,46 @@
     ViewBag.Title = "Alterando os dados de uma VENDA";
 }
 
-@using (Html.BeginForm()) 
-{
+<h1 class="my-4">Registro de uma NOVA VENDA</h1>
+
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Venda</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
-        
-        <div class="form-group">
-            <span class="control-label col-md-3">
-                @Html.Label("Nome do comprador")
-            </span>
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.NomeComprador, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NomeComprador, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <span class="control-label col-md-3">
-                @Html.Label("CPF do comprador")
-            </span>
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.CpfComprador, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CpfComprador, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="row">
+        <div class="col-lg-12 mb-12">
+            <div class="control-group form-group">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            <span class="control-label col-md-3">
-                @Html.Label("Telefone")
-            </span>
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.TelefoneComprador, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TelefoneComprador, "", new { @class = "text-danger" })
+                <div class="controls">
+                    @Html.Label("Nome do comprador")
+                    @Html.EditorFor(model => model.NomeComprador, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NomeComprador, "Nome do comprador não pode ser vazio!", new { @class = "text-danger" })
+                    <p class="help-block"></p>
+                </div>
+
+                <div class="controls">
+                    @Html.Label("CPF do comprador")
+                    @Html.EditorFor(model => model.CpfComprador, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CpfComprador, "CPF do comprador não pode ser vazio!", new { @class = "text-danger" })
+                    <p class="help-block"></p>
+                </div>
+
+                <div class="controls">
+                    @Html.Label("Telefone")
+                    @Html.EditorFor(model => model.TelefoneComprador, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TelefoneComprador, "Telefone do comprador não pode ser vazio!", new { @class = "text-danger" })
+                    <p class="help-block"></p>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="panel-footer panel-info">
-            <div class="col-md-offset-2 col-md-9">
-                <input type="submit" value="Adicionar Venda" class="btn btn-danger" />
-                @Html.ActionLink("Retornar para a listagem de Vendas", "Index", null, new { @class = "btn btn-warning" })
-            </div>
-            <br />
-            <br />
+    <div class="row mb-4">
+        <div class="col-lg-12 mb-12">
+            <input type="submit" value="Adicionar Venda" class="btn btn-primary" />
+            @Html.ActionLink("Retornar para a listagem de Vendas", "Index", null, new { @class = "btn" })
         </div>
-
     </div>
 }
-
-<div>
-    @Html.ActionLink("Retornar para a listagem", "Index", null, new { @class = "btn btn-info" })
-</div>
 
 @section ScriptPage {
     <script type="text/javascript">
