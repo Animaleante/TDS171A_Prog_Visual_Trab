@@ -76,7 +76,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.ProdutoId = new SelectList(context.Produtos, "ProdutoId", "Nome");
+            ViewBag.ProdutoId = new SelectList(context.Produtos.Where(p => !p.Removido), "ProdutoId", "Nome");
             ViewBag.VendaId = new SelectList(context.Vendas, "VendaId", "NumeroNota");
             return View(venda);
         }

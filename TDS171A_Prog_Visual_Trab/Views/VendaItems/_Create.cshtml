@@ -24,8 +24,8 @@
 
                 <div class="controls">
                     @Html.LabelFor(model => model.Valor)
-                    @Html.TextBoxFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
-                    @*@Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })*@
+                    @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
                     <p class="help-block"></p>
                 </div>
 

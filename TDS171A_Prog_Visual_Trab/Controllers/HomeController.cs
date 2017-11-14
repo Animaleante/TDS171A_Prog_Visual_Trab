@@ -14,7 +14,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
         {
             ViewBag.Categorias = context.Categorias.OrderBy(c => c.Nome).ToArray();
             ViewBag.Fabricantes = context.Fabricantes.OrderBy(c => c.Nome).ToArray();
-            ViewBag.Produtos = context.Produtos.Include(c => c.Categoria).Include(f => f.Fabricante).OrderBy(n => n.Nome);
+            ViewBag.Produtos = context.Produtos.Where(p => !p.Removido).Include(c => c.Categoria).Include(f => f.Fabricante).OrderBy(n => n.Nome);
 
             return View();
         }

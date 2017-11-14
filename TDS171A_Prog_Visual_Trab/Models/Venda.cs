@@ -24,7 +24,8 @@ namespace TDS171A_Prog_Visual_Trab.Models
         [StringLength(13, ErrorMessage = "O telefone precisa ter pelo menos 11 digitos (somente números)", MinimumLength = 10)]
         public string TelefoneComprador { get; set; }
 
-        public double? Total { get; set; }
+        [DataType(DataType.Currency)]
+        public double Total { get; set; }
 
         public virtual ICollection<VendaItem> VendaItems { get; set; }
     }

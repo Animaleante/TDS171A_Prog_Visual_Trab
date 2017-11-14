@@ -55,8 +55,8 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
             {
                 context.VendaItems.Add(vendaItem);
                 var venda = context.Vendas.Find(vendaItem.VendaId);
-                venda.Total += vendaItem.Quantidade * vendaItem.Valor;
-                vendaItem.totalUnitario += vendaItem.Quantidade * vendaItem.Valor;
+                venda.Total += 
+                    vendaItem.totalUnitario = vendaItem.Quantidade * vendaItem.Valor;
                 context.Entry(venda).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Edit", "Vendas", new { id = vendaItem.VendaId });
@@ -106,7 +106,8 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VendaItem vendaItem = context.VendaItems.Find(id);
+            //VendaItem vendaItem = context.VendaItems.Find(id);
+            VendaItem vendaItem = context.VendaItems.Where(vi => vi.VendaItemId == id).Include(p => p.Produto).Include(v => v.Venda).First();
             if (vendaItem == null)
             {
                 return HttpNotFound();
@@ -136,7 +137,8 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VendaItem vendaItem = context.VendaItems.Find(id);
+            //VendaItem vendaItem = context.VendaItems.Find(id);
+            VendaItem vendaItem = context.VendaItems.Where(vi => vi.VendaItemId == id).Include(p => p.Produto).Include(v => v.Venda).First();
             if (vendaItem == null)
             {
                 return HttpNotFound();
