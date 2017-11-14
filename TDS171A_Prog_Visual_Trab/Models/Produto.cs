@@ -16,7 +16,6 @@ namespace TDS171A_Prog_Visual_Trab.Models
 
         public bool Removido { get; set; }
         
-        
         public long? CategoriaId { get; set; }
         
         public long? FabricanteId { get; set; }

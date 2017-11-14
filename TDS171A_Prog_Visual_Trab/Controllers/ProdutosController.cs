@@ -62,6 +62,7 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
             }
             catch
             {
+                PopularViewBag();
                 return View(produto);
             }
         }
@@ -99,10 +100,12 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
                     context.SaveChanges();
                     return RedirectToAction("Index");
                 }
+
+                PopularViewBag(produto);
                 return View(produto);
             }
-            catch
-            {
+            catch {
+                PopularViewBag(produto);
                 return View(produto);
             }
         }
@@ -148,6 +151,17 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
                 return RedirectToAction("Index");
             }
 
+        }
+
+        private void PopularViewBag(Produto produto = null)
+        {
+            if (produto == null) {
+                ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome), "CategoriaId", "Nome");
+                ViewBag.FabricanteId = new SelectList(context.Fabricantes.OrderBy(b => b.Nome), "FabricanteId", "Nome");
+            } else {
+                ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome), "CategoriaId", "Nome", produto.CategoriaId);
+                ViewBag.FabricanteId = new SelectList(context.Fabricantes.OrderBy(b => b.Nome), "FabricanteId", "Nome", produto.FabricanteId);
+            }
         }
     }
 }
