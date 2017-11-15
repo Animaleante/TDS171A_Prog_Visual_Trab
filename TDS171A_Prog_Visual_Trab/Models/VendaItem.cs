@@ -12,10 +12,10 @@ namespace TDS171A_Prog_Visual_Trab.Models
         public long? VendaId { get; set; }
         public long? ProdutoId { get; set; }
 
-        [Required(ErrorMessage ="Quantidade deve ser maior que 0",AllowEmptyStrings =false)]
+        [Range(1, int.MaxValue, ErrorMessage = "Valor deve ser maior que 0")]
         public int Quantidade { get; set; }
 
-        [Required(ErrorMessage ="Valor deve ser maior que 0")]
+        [Range(1, int.MaxValue, ErrorMessage = "Valor deve ser maior que 0")]
         public double Valor { get; set; }       
         
         public double totalUnitario { get; set; }

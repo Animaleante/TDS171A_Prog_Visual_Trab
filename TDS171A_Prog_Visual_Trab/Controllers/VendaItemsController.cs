@@ -149,7 +149,6 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
 
         // POST: VendaItems/DeleteEdit/5
         [HttpPost, ActionName("DeleteEdit")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteEdit(long id)
         {
             VendaItem vendaItem = context.VendaItems.Find(id);
@@ -160,6 +159,22 @@ namespace TDS171A_Prog_Visual_Trab.Controllers
             context.SaveChanges();
             return RedirectToAction("Edit", "Vendas", new { id = iddavenda });
         }
-        
+
+        // GET: VendaItems/DeleteEdit/5
+        public ActionResult DeleteModal(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //VendaItem vendaItem = context.VendaItems.Find(id);
+            VendaItem vendaItem = context.VendaItems.Where(vi => vi.VendaItemId == id).Include(p => p.Produto).Include(v => v.Venda).First();
+            if (vendaItem == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(vendaItem);
+        }
     }
 }

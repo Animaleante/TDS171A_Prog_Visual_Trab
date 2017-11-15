@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<TDS171A_Prog_Visual_Trab.Models.VendaItem>
 
+
 @{
     ViewBag.Title = "Lista de Produtos";
 }
@@ -23,12 +24,12 @@
         <th>
             Total
         </th>
-        
+
     </tr>
 
     @foreach (var item in Model)
     {
-               
+
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Produto.Nome)
@@ -47,8 +48,9 @@
             </td>
 
 
-            <td>                    
-                    @Html.ActionLink("Delete", "DeleteEdit", "VendaItems", new { id = item.VendaItemId }, null)
+            <td>
+                @*@Html.ActionLink("Delete", "DeleteEdit", "VendaItems", new { id = item.VendaItemId }, null)*@
+                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#deleteConfirmationModal" data-item-id="@item.VendaItemId">Remover</a>
             </td>
         </tr>
     }

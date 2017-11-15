@@ -80,6 +80,51 @@
 @Html.Partial("~/Views/VendaItems/_Create.cshtml", new TDS171A_Prog_Visual_Trab.Models.VendaItem() { VendaId = Model.VendaId })
 @Html.Partial("~/Views/VendaItems/_porVenda.cshtml", Model.VendaItems)
 
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1"
+     role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmação de exclusão de ITEM</h4>
+                <button type="button" class="close" data-ELTEismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger"
+                        onclick="$('#delete-form').submit();">
+                    Sim, exclua este item.
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    Não, não exclua este item.
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="~/Scripts/jquery-3.2.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@section ScriptPage {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#deleteConfirmationModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var itemId = button.data('item-id');
+
+                var modal = $(this);
+
+                $.ajax("/VendaItems/DeleteModal/" + itemId).done(function (data) {
+                    modal.find('.modal-body').html(data);
+                }).fail(function (err) {
+                    console.error(err);
+                });
+            });
+        });
+    </script>
+}
